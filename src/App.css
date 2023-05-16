@@ -88,6 +88,14 @@ li:hover {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.card-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  border: 0;
+}
+
 .card-title {
   align-self: center;
   padding: 5px;
@@ -107,6 +115,11 @@ h2 {
 }
 
 .card-price {
+  align-self: center;
+  padding: 5px;
+}
+
+.card-amount{
   align-self: center;
   padding: 5px;
 }
