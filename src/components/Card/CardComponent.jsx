@@ -1,12 +1,21 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import ButtonComponent from "../Buttons/ButtonComponent";
 
 const CardComponent = (props) => {
   const { data } = props;
-  const { id, name, desciption, img, price, amount } = data;
+  const { id, name, img, price } = data;
+
+  const showShortValue = (value = "", lengthMax = 45) => {
+    return value.length > lengthMax
+      ? value.substring(0, lengthMax).concat(" ...")
+      : value;
+  };
+
   return (
     <div className="card">
       <div className="card-title">
-        <h2>{name}</h2>
+        <h2>{showShortValue(name, 20)}</h2>
       </div>
       <div className="card-img">
         <img src={img} alt="" />
@@ -16,14 +25,12 @@ const CardComponent = (props) => {
       </div>
       <div className="card-btns">
         <div className="card-info">
-          <button type="button" className="btn btn-outline-danger">
-            +info
-          </button>
+          <NavLink to={`/card/` + id}>
+            <ButtonComponent name="+info" className="btn btn-outline-danger" />
+          </NavLink>
         </div>
         <div className="card-buy">
-          <button type="button" className="btn btn-outline-success">
-            Comprar
-          </button>
+          <ButtonComponent name="Comprar" className="btn btn-outline-success" />
         </div>
       </div>
     </div>

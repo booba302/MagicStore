@@ -3,7 +3,7 @@ import OptionNavBarComponent from "./OptionNavBarComponent";
 
 const ListOptionNavBarComponent = (props) => {
   const { categories } = props;
-
+console.log(categories)
   return (
     <div className="categories">
       <ul>

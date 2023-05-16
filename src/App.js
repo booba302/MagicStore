@@ -1,15 +1,20 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBarComponent from "./components/NavBar/NavBarComponent";
+import ProductsView from "./views/ProductsView";
+import DetailsView from "./views/DetailsView";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
-import ProductView from "./views/ProductsView";
-import { Fragment } from "react";
 
 function App() {
   return (
-    <Fragment>
+    <BrowserRouter>
       <NavBarComponent />
-      <ProductView />
-    </Fragment>
+      <Routes>
+        <Route path="/" element={<ProductsView />}></Route>
+        <Route path="/color/:category" element={<ProductsView />}></Route>
+        <Route path="/card/:id" element={<DetailsView />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
