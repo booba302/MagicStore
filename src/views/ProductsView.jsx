@@ -1,4 +1,4 @@
-import React, { memo, useContext, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import useFirestore from "../utils/useFirestore";
 import CardComponent from "../components/Card/CardComponent";
@@ -30,7 +30,6 @@ const ProductView = (props) => {
               <CardComponent
                 showInfo
                 data={product}
-                cantidad="Cantidad en existencia: "
               />
             </div>
           );

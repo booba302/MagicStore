@@ -1,13 +1,14 @@
 import React, { Fragment, useContext } from "react";
 import CardComponent from "../components/Card/CardComponent";
-import GeneralContext from "../context/GeneralContext";
+import { CartContext } from "../context/CartContext";
 import { NavLink } from "react-router-dom";
 
 const CartView = (props) => {
-  const { car } = useContext(GeneralContext);
+  const { cart } = useContext(CartContext);
+  console.log(cart)
 
-  const simpleCar = [
-    ...car
+  /* const simpleCar = [
+    ...cart
       .reduce((mp, o) => {
         const key = JSON.stringify([
           o.id,
@@ -23,20 +24,20 @@ const CartView = (props) => {
         return mp;
       }, new Map())
       .values(),
-  ];
+  ]; */
 
   let total = 0;
 
-  simpleCar.forEach((card) => {
+  cart.forEach((card) => {
     delete card.amount;
     total = total + card.price * card.quantity;
-    console.log(total)
+    console.log(total);
   });
 
   return (
     <Fragment>
       <div className="cards-container">
-        {simpleCar.map((card, index) => {
+        {cart.map((card, index) => {
           return (
             <div key={index}>
               <CardComponent

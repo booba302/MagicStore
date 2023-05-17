@@ -130,16 +130,26 @@ h3 {
 
 .card-btns {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
+.btn-info{
+  justify-self: center;
+}
+
 .total {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter {
+  display: flex;
   align-items: center;
   justify-content: center;
 }

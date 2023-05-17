@@ -1,29 +1,24 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import useFirestore from "../utils/useFirestore";
-import ButtonComponent from "../components/Buttons/ButtonComponent";
-import GeneralContext from "../context/GeneralContext";
-import { ToastContainer, toast } from "react-toastify";
+import { CartContext } from "../context/CartContext";
 import "react-toastify/dist/ReactToastify.css";
+import ItemCountComponent from "../components/ItemCount/ItemCountComponent";
 
 const nameCollection = "products";
 
-const DetailsView = (props) => {  
+const DetailsView = (props) => {
   const { id: documentId } = useParams();
-  const { addToCar } = useContext(GeneralContext);
+  const [qty, setQty] = useState(0);
+  const { addToCart } = useContext(CartContext);
 
   const [data] = useFirestore({ nameCollection, documentId });
-  const { id, name, img, description, price, amount } = data;
+  const { name, img, description, price } = data;
 
-  const addCard = () => {
-    addToCar(data);
-  };
-
-  const notify = () => toast("Se agregó "+name+" al carrito!");
-
-  const onClickFtn = () => {
-    addCard();
-    notify();
+  const addCard = (qty) => {
+    console.log(qty);
+    setQty(qty);
+    addToCart(data, qty);
   };
 
   return (
@@ -44,18 +39,22 @@ const DetailsView = (props) => {
           <div className="card-price">
             <h3>Precio: {price}$</h3>
           </div>
-          <div className="card-amount">
-            <h3>Cantidad en existencia: {amount}</h3>
-          </div>
           <div className="card-btns">
             <div className="btn-info">
-              <button
-                onClick={onClickFtn}
-                className="btn btn-outline-success btn-sm"
-              >
-                Comprar
-              </button>
-              <ToastContainer />
+              {qty > 0 ? (
+                <NavLink to="/shopping-cart">
+                  <button className="btn btn-outline-success btn-sm">
+                    Terminar Compra
+                  </button>
+                </NavLink>
+              ) : (
+                <ItemCountComponent
+                  initial={1}
+                  stock={10}
+                  onAdd={addCard}
+                ></ItemCountComponent>
+                
+              )}
             </div>
             <div className="btn-buy">
               <NavLink to="/">
