@@ -3,10 +3,12 @@ import { NavLink, useParams } from "react-router-dom";
 import useFirestore from "../utils/useFirestore";
 import ButtonComponent from "../components/Buttons/ButtonComponent";
 import GeneralContext from "../context/GeneralContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const nameCollection = "products";
 
-const DetailsView = (props) => {
+const DetailsView = (props) => {  
   const { id: documentId } = useParams();
   const { addToCar } = useContext(GeneralContext);
 
@@ -15,6 +17,13 @@ const DetailsView = (props) => {
 
   const addCard = () => {
     addToCar(data);
+  };
+
+  const notify = () => toast("Se agregó "+name+" al carrito!");
+
+  const onClickFtn = () => {
+    addCard();
+    notify();
   };
 
   return (
@@ -41,17 +50,16 @@ const DetailsView = (props) => {
           <div className="card-btns">
             <div className="btn-info">
               <button
-                onClick={addCard}
+                onClick={onClickFtn}
                 className="btn btn-outline-success btn-sm"
               >
                 Comprar
               </button>
+              <ToastContainer />
             </div>
             <div className="btn-buy">
               <NavLink to="/">
-                <button
-                  className="btn btn-outline-primary btn-sm"
-                >
+                <button className="btn btn-outline-primary btn-sm">
                   Volver
                 </button>
               </NavLink>

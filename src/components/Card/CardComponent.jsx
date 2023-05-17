@@ -4,7 +4,7 @@ import GeneralContext from "../../context/GeneralContext";
 
 const CardComponent = (props) => {
   const { data, cantidad, showInfo, showDelete } = props;
-  const { id, name, img, price, amount, count } = data;
+  const { id, name, img, price, amount, quantity } = data;
   const { delToCar } = useContext(GeneralContext);
 
   const showShortValue = (value = "", lengthMax = 45) => {
@@ -28,10 +28,11 @@ const CardComponent = (props) => {
         <img src={img} alt="" />
       </div>
       <div className="card-price">
-        <h3>Precio: {price}$</h3>
+        <h3>Precio unitario: {price}$</h3>
       </div>
       <div className="card-amount">
-        <h3>{cantidad} {count ? count : amount}</h3>
+        <h3>{cantidad} {quantity ? quantity : amount} uds.</h3>
+        <h3>{isNaN(quantity * price) ? " " : ("Total: " +(quantity * price).toFixed(2) + "$")}</h3>
       </div>
       <div className="card-btns">
         <ButtonComponent

@@ -136,3 +136,10 @@ h3 {
   justify-content: center;
   gap: 10px;
 }
+
+.total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
