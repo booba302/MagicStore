@@ -1,4 +1,4 @@
-import React, { memo, useContext, useMemo } from "react";
+import React, { memo, useContext, useEffect, useMemo } from "react";
 import logo from "./logo.png";
 import useFirestore from "../../utils/useFirestore";
 import ListOptionNavBarComponent from "./ListOptionNavBarComponent";
@@ -10,10 +10,8 @@ import { CartContext } from "../../context/CartContext";
 const nameCollection = "categories";
 
 const NavBarComponent = (props) => {
-  const { cart } = useContext(CartContext);
+  const { qtyCart } = useContext(CartContext);
   const [data] = useFirestore({ nameCollection });
-
-  const qtyCart = cart.reduce((acc, act) => acc + act.quantity, 0);
 
   const dataProcess = useMemo(() => {
     const categoriesObject = data.length !== 0 ? data[0] : [];

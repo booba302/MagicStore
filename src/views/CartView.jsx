@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 
 const CartView = (props) => {
   const { cart } = useContext(CartContext);
-  console.log(cart)
 
   /* const simpleCar = [
     ...cart
@@ -31,7 +30,6 @@ const CartView = (props) => {
   cart.forEach((card) => {
     delete card.amount;
     total = total + card.price * card.quantity;
-    console.log(total);
   });
 
   return (

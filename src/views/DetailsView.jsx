@@ -16,9 +16,8 @@ const DetailsView = (props) => {
   const { name, img, description, price } = data;
 
   const addCard = (qty) => {
-    console.log(qty);
     setQty(qty);
-    addToCart(data, qty);
+    addToCart(data, qty); 
   };
 
   return (
@@ -53,7 +52,6 @@ const DetailsView = (props) => {
                   stock={10}
                   onAdd={addCard}
                 ></ItemCountComponent>
-                
               )}
             </div>
             <div className="btn-buy">
