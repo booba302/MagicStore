@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import ButtonComponent from "../Buttons/ButtonComponent";
+import GeneralContext from "../../context/GeneralContext";
 
 const CardComponent = (props) => {
-  const { data } = props;
+  const { data, showInfo, showDelete } = props;
   const { id, name, img, price, amount } = data;
+  const { delToCar } = useContext(GeneralContext);
 
   const showShortValue = (value = "", lengthMax = 45) => {
     return value.length > lengthMax
@@ -12,14 +14,15 @@ const CardComponent = (props) => {
       : value;
   };
 
+  const removeThisCard = () => {
+    delToCar(data);
+  };
+
   return (
     <div className="card">
       <div className="card-header">
         <div className="card-title">
-          <h2>{showShortValue(name, 15)}</h2>
-        </div>
-        <div className="card-header-button">
-          <ButtonComponent name="X" className="btn btn-outline-danger" />
+          <h2>{showShortValue(name, 18)}</h2>
         </div>
       </div>
       <div className="card-img">
@@ -32,14 +35,12 @@ const CardComponent = (props) => {
         <h3>Cantidad en existencia: {amount}</h3>
       </div>
       <div className="card-btns">
-        <div className="card-info">
-          <NavLink to={`/card/` + id}>
-            <ButtonComponent name="+info" className="btn btn-outline-success" />
-          </NavLink>
-        </div>
-        <div className="card-buy">
-          <ButtonComponent name="Comprar" className="btn btn-outline-primary" />
-        </div>
+        <ButtonComponent
+          showInfo={showInfo}
+          showDelete={showDelete}
+          idProduct={id}
+          removeThisCard={removeThisCard}
+        />
       </div>
     </div>
   );

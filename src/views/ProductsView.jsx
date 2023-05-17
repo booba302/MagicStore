@@ -27,7 +27,7 @@ const ProductView = (props) => {
         data.map((product, index) => {
           return (
             <div key={index}>
-              <CardComponent data={product} />
+              <CardComponent showInfo data={product} />
             </div>
           );
         })

@@ -1,15 +1,21 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import useFirestore from "../utils/useFirestore";
 import ButtonComponent from "../components/Buttons/ButtonComponent";
+import GeneralContext from "../context/GeneralContext";
 
 const nameCollection = "products";
 
 const DetailsView = (props) => {
   const { id: documentId } = useParams();
+  const { addToCar } = useContext(GeneralContext);
 
   const [data] = useFirestore({ nameCollection, documentId });
-  const {name, img, description, price, amount} = data;
+  const { id, name, img, description, price, amount } = data;
+
+  const addCard = () => {
+    addToCar(data);
+  };
 
   return (
     <Fragment>
@@ -34,17 +40,20 @@ const DetailsView = (props) => {
           </div>
           <div className="card-btns">
             <div className="btn-info">
-              <ButtonComponent
-                className="btn btn-outline-primary"
-                name="Comprar"
-              />
+              <button
+                onClick={addCard}
+                className="btn btn-outline-success btn-sm"
+              >
+                Comprar
+              </button>
             </div>
             <div className="btn-buy">
               <NavLink to="/">
-                <ButtonComponent
-                  className="btn btn-outline-danger"
-                  name="Volver"
-                />
+                <button
+                  className="btn btn-outline-primary btn-sm"
+                >
+                  Volver
+                </button>
               </NavLink>
             </div>
           </div>

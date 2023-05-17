@@ -5,10 +5,12 @@ import ListOptionNavBarComponent from "./ListOptionNavBarComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import GeneralContext from "../../context/GeneralContext";
 
 const nameCollection = "categories";
 
 const NavBarComponent = (props) => {
+  const { car } = useContext(GeneralContext);
   const [data] = useFirestore({ nameCollection });
 
   const dataProcess = useMemo(() => {
@@ -25,10 +27,12 @@ const NavBarComponent = (props) => {
         </div>
       </NavLink>
       <ListOptionNavBarComponent categories={dataProcess} />
-      <div className="cart">
-        <FontAwesomeIcon icon={faCartShopping} />
-        10
-      </div>
+      <NavLink to="/shopping-car">
+        <div className="cart">
+          <FontAwesomeIcon icon={faCartShopping} />
+          {car.length}
+        </div>
+      </NavLink>
     </div>
   );
 };
