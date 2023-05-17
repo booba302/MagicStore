@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import ButtonComponent from "../Buttons/ButtonComponent";
 import GeneralContext from "../../context/GeneralContext";
 
 const CardComponent = (props) => {
-  const { data, showInfo, showDelete } = props;
-  const { id, name, img, price, amount } = data;
+  const { data, cantidad, showInfo, showDelete } = props;
+  const { id, name, img, price, amount, count } = data;
   const { delToCar } = useContext(GeneralContext);
 
   const showShortValue = (value = "", lengthMax = 45) => {
@@ -32,7 +31,7 @@ const CardComponent = (props) => {
         <h3>Precio: {price}$</h3>
       </div>
       <div className="card-amount">
-        <h3>Cantidad en existencia: {amount}</h3>
+        <h3>{cantidad} {count ? count : amount}</h3>
       </div>
       <div className="card-btns">
         <ButtonComponent

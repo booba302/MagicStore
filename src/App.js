@@ -17,7 +17,7 @@ function App() {
 
   const delToCar = (card) => {
     const newCar = car.filter((_card) => _card.id !== card.id);
-    setCar(newCar);
+    setCar(newCar); 
   };
 
   return (

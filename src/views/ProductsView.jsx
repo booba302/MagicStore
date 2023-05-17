@@ -27,7 +27,11 @@ const ProductView = (props) => {
         data.map((product, index) => {
           return (
             <div key={index}>
-              <CardComponent showInfo data={product} />
+              <CardComponent
+                showInfo
+                data={product}
+                cantidad="Cantidad en existencia: "
+              />
             </div>
           );
         })
