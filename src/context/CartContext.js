@@ -7,9 +7,9 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [qtyCart, setQtyCart] = useState(0);
+  const [upd, setUpd] = useState(false);
 
   const addToCart = (card, quantity) => {
-    console.log(quantity);
     if (!isInCart(card.id)) {
       setCart((item) => [...item, { ...card, quantity }]);
     } else {
@@ -19,6 +19,7 @@ export const CartProvider = ({ children }) => {
         }
       });
     }
+    upd ? setUpd(false) : setUpd(true)
   };
 
   const addQtyCart = () => {
@@ -33,7 +34,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     addQtyCart();
-  }, [addToCart, delToCart]);
+  }, [upd]);
 
   const clearCart = () => {
     setCart([]);
