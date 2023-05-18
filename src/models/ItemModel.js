@@ -13,14 +13,15 @@ const ItemOrderModel = {
 };
 
 const OrderModel = {
+  id : 0,
   client: {
-    id: 0, //Number
     name: "", //String
     lastname: "", //String
     phone: "", //String
     email: "", //String
   },
-  cards: [ItemOrderModel], //Array
+  cards: [ItemOrderModel],
+  date: "" //Array
 };
 
 const CollectionOrdersModel = {

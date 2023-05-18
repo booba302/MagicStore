@@ -39,6 +39,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
+    upd ? setUpd(false) : setUpd(true);
   };
 
   const isInCart = (id) => {
