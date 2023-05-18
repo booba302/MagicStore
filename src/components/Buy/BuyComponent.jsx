@@ -27,7 +27,9 @@ const BuyComponent = (props) => {
                       showInfo={showInfo}
                       showDelete={showDelete}
                       idProduct={card.id}
-                      removeThisCard={() => {delToCart(card)}}
+                      removeThisCard={() => {
+                        delToCart(card);
+                      }}
                     />
                   </div>
                   <div className="col-2">
@@ -90,7 +92,7 @@ const BuyComponent = (props) => {
                   placeholder="Correo electrónico:"
                 />
                 <label htmlFor="email-confirm">
-                  Repetir Correo electrónico:{" "}
+                  Repetir correo electrónico:{" "}
                 </label>
                 <input
                   type="email"
@@ -100,9 +102,16 @@ const BuyComponent = (props) => {
                   placeholder="Repetir Correo electrónico"
                 />
               </div>
-              <button type="submit" className="btn btn-outline-success btn-sm">
+              <div className="total">
+                <h2>
+                  {cart.length > 0
+                    ? "Total a pagar: " + total.toFixed(2) + "$"
+                    : ""}
+                </h2>
+                <button type="submit" className="btn btn-outline-success btn-sm">
                 Comprar
               </button>
+              </div>
             </form>
           </div>
         </div>

@@ -164,3 +164,8 @@ h3 {
 input {
   margin-bottom: 25px;
 }
+
+.total {
+  display: flex;
+  flex-direction: column;
+}
