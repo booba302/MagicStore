@@ -19,7 +19,7 @@ export const CartProvider = ({ children }) => {
         }
       });
     }
-    upd ? setUpd(false) : setUpd(true)
+    upd ? setUpd(false) : setUpd(true);
   };
 
   const addQtyCart = () => {
@@ -30,11 +30,12 @@ export const CartProvider = ({ children }) => {
   const delToCart = (data) => {
     const newCar = cart.filter((card) => card.id !== data.id);
     setCart(newCar);
+    upd ? setUpd(false) : setUpd(true);
   };
 
   useEffect(() => {
     addQtyCart();
-  }, [upd]);
+  },[upd]);
 
   const clearCart = () => {
     setCart([]);

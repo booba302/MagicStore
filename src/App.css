@@ -76,19 +76,19 @@ li:hover {
   padding: 10px;
 }
 
-.card-details{
+.card-details {
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 2%;
   padding: 10px;
   width: 600px;
 }
 
-.card-info{
+.card-info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.card-header{
+.card-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -119,7 +119,7 @@ h2 {
   padding: 5px;
 }
 
-.card-amount{
+.card-amount {
   align-self: center;
   padding: 5px;
 }
@@ -137,7 +137,7 @@ h3 {
   gap: 10px;
 }
 
-.btn-info{
+.btn-info {
   justify-self: center;
 }
 
@@ -152,4 +152,15 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cart-cards {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+input {
+  margin-bottom: 25px;
 }

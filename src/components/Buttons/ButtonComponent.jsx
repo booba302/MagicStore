@@ -6,7 +6,7 @@ const ButtonComponent = ({showDelete,showInfo,removeThisCard,idProduct}) => {
   return (
     <Fragment>
       {showDelete ? (
-        <button className="btn btn-danger btn-sm" onClick={removeThisCard}>
+        <button className="btn btn-outline-danger btn-sm" onClick={removeThisCard}>
           x
         </button>
       ) : (

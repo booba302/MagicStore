@@ -3,8 +3,8 @@ import ButtonComponent from "../Buttons/ButtonComponent";
 import { CartContext } from "../../context/CartContext";
 
 const CardComponent = (props) => {
-  const { data, cantidad, showInfo, showDelete } = props;
-  const { id, name, img, price, quantity } = data;
+  const { data, showInfo, showDelete } = props;
+  const { id, name, img, price } = data;
   const { delToCart } = useContext(CartContext);
 
   const showShortValue = (value = "", lengthMax = 45) => {
@@ -29,16 +29,6 @@ const CardComponent = (props) => {
       </div>
       <div className="card-price">
         <h3>Precio: {price}$</h3>
-      </div>
-      <div className="card-amount">
-        <h3>
-          {cantidad ? cantidad + " " +quantity: ""}
-        </h3>
-        <h3>
-          {isNaN(quantity * price)
-            ? " "
-            : "Total: " + (quantity * price).toFixed(2) + "$"}
-        </h3>
       </div>
       <div className="card-btns">
         <ButtonComponent
