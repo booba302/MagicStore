@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import ButtonComponent from "../Buttons/ButtonComponent";
 
+
 const BuyComponent = (props) => {
   const { showInfo, showDelete } = props;
   const { cart, delToCart } = useContext(CartContext);
@@ -11,7 +12,7 @@ const BuyComponent = (props) => {
   cart.forEach((card) => {
     total = total + card.price * card.quantity;
   });
-
+  
   return (
     <div className="cart-detail container">
       {cart.length === 0 ? (
@@ -27,6 +28,7 @@ const BuyComponent = (props) => {
                       showInfo={showInfo}
                       showDelete={showDelete}
                       idProduct={card.id}
+                      name={card.name}
                       removeThisCard={() => {
                         delToCart(card);
                       }}
@@ -108,9 +110,12 @@ const BuyComponent = (props) => {
                     ? "Total a pagar: " + total.toFixed(2) + "$"
                     : ""}
                 </h2>
-                <button type="submit" className="btn btn-outline-success btn-sm">
-                Comprar
-              </button>
+                <button
+                  type="submit"
+                  className="btn btn-outline-success btn-sm"
+                >
+                  Comprar
+                </button>
               </div>
             </form>
           </div>

@@ -2,8 +2,9 @@ import React, { Fragment, useContext, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import useFirestore from "../utils/useFirestore";
 import { CartContext } from "../context/CartContext";
-import "react-toastify/dist/ReactToastify.css";
 import ItemCountComponent from "../components/ItemCount/ItemCountComponent";
+import { ToastContainer, toast } from "react-toastify";
+import ErrorView from "./ErrorView";
 
 const nameCollection = "products";
 
@@ -15,13 +16,23 @@ const DetailsView = (props) => {
   const [data] = useFirestore({ nameCollection, documentId });
   const { name, img, description, price } = data;
 
+  const notify = (qty) =>
+    toast.success("Se ha agregado " + name + " x" + qty + " al carrito!", {
+      position: "bottom-right",
+      theme: "dark",
+    });
+
   const addCard = (qty) => {
     setQty(qty);
-    addToCart(data, qty); 
+    addToCart(data, qty);
+    notify(qty);
   };
 
   return (
     <Fragment>
+      {data.length === 0 ? (
+          <ErrorView />
+      ) : (      
       <div className="cards-container">
         <div className="card-details card">
           <div className="card-title">
@@ -53,6 +64,7 @@ const DetailsView = (props) => {
                   onAdd={addCard}
                 ></ItemCountComponent>
               )}
+              <ToastContainer />
             </div>
             <div className="btn-buy">
               <NavLink to="/">
@@ -64,6 +76,7 @@ const DetailsView = (props) => {
           </div>
         </div>
       </div>
+      )}
     </Fragment>
   );
 };

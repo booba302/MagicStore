@@ -4,6 +4,7 @@ import ProductsView from "./views/ProductsView";
 import DetailsView from "./views/DetailsView";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import { CartProvider } from "./context/CartContext";
 import CartView from "./views/CartView";
 

@@ -169,3 +169,7 @@ input {
   display: flex;
   flex-direction: column;
 }
+
+.error{
+  padding: 50px;
+}
