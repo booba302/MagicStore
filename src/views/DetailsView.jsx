@@ -17,8 +17,7 @@ const DetailsView = (props) => {
     nameCollection,
     documentId,
   });
-  const { id, name, img, description, price } = data;
-  console.log(loading, error);
+  const { name, img, description, price } = data;
 
   const notify = (qty) =>
     toast.success("Se ha agregado " + name + " x" + qty + " al carrito!", {
