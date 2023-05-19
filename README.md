@@ -18,4 +18,4 @@ La usé para mostrar las alertas al momento de algún error o cuando se creaba l
 
 ## Toastify: 
 
-La usé para mostrar un aviso del producto y la cantidad agregados al carrito. (https://sweetalert2.github.io/)
+La usé para mostrar un aviso del producto y la cantidad agregados al carrito. (https://fkhadra.github.io/react-toastify/introduction/)
