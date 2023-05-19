@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import ButtonComponent from "../Buttons/ButtonComponent";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -39,17 +38,17 @@ const BuyComponent = (props) => {
       };
       const db = getFirestore();
       const orderCollection = collection(db, collectionOrders);
-      addDoc(orderCollection, newOrder).then(({ id }) => {
-        Swal.fire({
-          title: "¿Desea confirmar la compra?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Si",
-          cancelButtonText: "No",
-        }).then((result) => {
-          if (result.isConfirmed) {
+      Swal.fire({
+        title: "¿Desea confirmar la compra?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          addDoc(orderCollection, newOrder).then(({ id }) => {
             Swal.fire(
               name +
                 " " +
@@ -61,12 +60,9 @@ const BuyComponent = (props) => {
             );
             clearCart();
             navigate("/");
-          }
-        });
+          });
+        }
       });
-    } else {
-      const MySwal = withReactContent(Swal);
-      Swal.fire("Los correos no coinciden", "", "error");
     }
   };
 
