@@ -12,7 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const initialState = {
   response: {},
-  error: {},
+  error: false,
   data: [],
   loading: true,
 };
@@ -23,7 +23,6 @@ const filtersFuntions = {
 };
 
 const useFirestore = ({ nameCollection = "", documentId, filters }) => {
-  
   const [state, setState] = useState(initialState);
 
   const listFilters = useMemo(() => {
@@ -41,6 +40,8 @@ const useFirestore = ({ nameCollection = "", documentId, filters }) => {
         if (snapshot.exists()) {
           const _data = snapshot.data();
           setState({ ...state, data: _data, loading: false });
+        } else {
+          setState({ ...state, loading: false, error: true });
         }
       });
     } else if (nameCollection) {

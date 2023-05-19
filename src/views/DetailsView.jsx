@@ -13,8 +13,12 @@ const DetailsView = (props) => {
   const [qty, setQty] = useState(0);
   const { addToCart } = useContext(CartContext);
 
-  const [data] = useFirestore({ nameCollection, documentId });
-  const { name, img, description, price } = data;
+  const [data, loading, response, error] = useFirestore({
+    nameCollection,
+    documentId,
+  });
+  const { id, name, img, description, price } = data;
+  console.log(loading, error);
 
   const notify = (qty) =>
     toast.success("Se ha agregado " + name + " x" + qty + " al carrito!", {
@@ -30,52 +34,54 @@ const DetailsView = (props) => {
 
   return (
     <Fragment>
-      {data.length === 0 ? (
-          <ErrorView />
-      ) : (      
-      <div className="cards-container">
-        <div className="card-details card">
-          <div className="card-title">
-            <h2>{name}</h2>
-          </div>
-          <div className="card-info">
-            <div className="card-img">
-              <img src={img} alt="" />
+      {loading ? (
+        <h1 className="text-center">El producto está cargando</h1>
+      ) : error ? (
+        <ErrorView />
+      ) : (
+        <div className="cards-container">
+          <div className="card-details card">
+            <div className="card-title">
+              <h2>{name}</h2>
             </div>
-            <div className="card-text">
-              <p>{description}</p>
+            <div className="card-info">
+              <div className="card-img">
+                <img src={img} alt="" />
+              </div>
+              <div className="card-text">
+                <p>{description}</p>
+              </div>
             </div>
-          </div>
-          <div className="card-price">
-            <h3>Precio: {price}$</h3>
-          </div>
-          <div className="card-btns">
-            <div className="btn-info">
-              {qty > 0 ? (
-                <NavLink to="/shopping-cart">
-                  <button className="btn btn-outline-success btn-sm">
-                    Terminar Compra
+            <div className="card-price">
+              <h3>Precio: {price}$</h3>
+            </div>
+            <div className="card-btns">
+              <div className="btn-info">
+                {qty > 0 ? (
+                  <NavLink to="/shopping-cart">
+                    <button className="btn btn-outline-success btn-sm">
+                      Terminar Compra
+                    </button>
+                  </NavLink>
+                ) : (
+                  <ItemCountComponent
+                    initial={1}
+                    stock={10}
+                    onAdd={addCard}
+                  ></ItemCountComponent>
+                )}
+                <ToastContainer />
+              </div>
+              <div className="btn-buy">
+                <NavLink to="/">
+                  <button className="btn btn-outline-primary btn-sm">
+                    Volver
                   </button>
                 </NavLink>
-              ) : (
-                <ItemCountComponent
-                  initial={1}
-                  stock={10}
-                  onAdd={addCard}
-                ></ItemCountComponent>
-              )}
-              <ToastContainer />
-            </div>
-            <div className="btn-buy">
-              <NavLink to="/">
-                <button className="btn btn-outline-primary btn-sm">
-                  Volver
-                </button>
-              </NavLink>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       )}
     </Fragment>
   );
