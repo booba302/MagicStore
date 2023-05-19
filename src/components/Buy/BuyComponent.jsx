@@ -63,6 +63,12 @@ const BuyComponent = (props) => {
           });
         }
       });
+    } else {
+      Swal.fire(
+        'Error',
+        'Los correos no coinciden',
+        'error'
+      )
     }
   };
 
