@@ -13,7 +13,7 @@ const DetailsView = (props) => {
   const [qty, setQty] = useState(0);
   const { addToCart } = useContext(CartContext);
 
-  const [data, loading, response, error] = useFirestore({
+  const [data, loading, , error] = useFirestore({
     nameCollection,
     documentId,
   });

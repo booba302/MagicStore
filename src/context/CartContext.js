@@ -35,7 +35,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     addQtyCart();
-  },[upd]);
+  }, [upd]);
 
   const clearCart = () => {
     setCart([]);
