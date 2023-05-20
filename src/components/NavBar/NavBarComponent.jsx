@@ -1,11 +1,10 @@
-import React, { memo, useContext, useEffect, useMemo } from "react";
+import React, { memo, useContext, useMemo } from "react";
 import logo from "./logo.png";
 import useFirestore from "../../utils/useFirestore";
 import ListOptionNavBarComponent from "./ListOptionNavBarComponent";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import CardWidgetComponent from "../CardWidget/CardWidgetComponent";
 
 const nameCollection = "categories";
 
@@ -28,10 +27,7 @@ const NavBarComponent = (props) => {
       </NavLink>
       <ListOptionNavBarComponent categories={dataProcess} />
       <NavLink to="/shopping-cart">
-        <div className="cart">
-          <FontAwesomeIcon icon={faCartShopping} />
-          {qtyCart}
-        </div>
+        <CardWidgetComponent quantity={qtyCart} />
       </NavLink>
     </div>
   );
